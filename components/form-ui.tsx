@@ -6,7 +6,7 @@ import { CardTitle, CardHeader, CardContent, CardFooter, Card } from "@/componen
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { redirect, useRouter } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { Appointments, Clients } from "@/types/types"
 
 export function FormUI() {
@@ -20,7 +20,7 @@ export function FormUI() {
         let date = formData.get("appointment-date")
         let time = formData.get("appointment-time")
         let appontment: Appointments = {
-            id: 1,
+            id: randId(),
             Date: date as string,
             Time: time as string,
         }

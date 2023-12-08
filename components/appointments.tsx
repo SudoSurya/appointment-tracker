@@ -5,8 +5,11 @@
 import { Button } from "@/components/ui/button"
 import { CardTitle, CardDescription, CardHeader, Card } from "@/components/ui/card"
 import { Clients } from "@/types/types"
-
-export function Appointments(props: Clients) {
+type Props = {
+    props: Clients
+    deleteAppointment: any
+}
+export function Appointments({ props, deleteAppointment }: Props) {
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-6">
@@ -18,7 +21,7 @@ export function Appointments(props: Clients) {
             </div>
             <div className="grid gap-6">
                 {
-                    props.Appointments?.map((appointment) => {
+                    props.Appointments?.map((appointment, idx) => {
                         const date = new Date(appointment.Date).toDateString();
                         const timeString = appointment.Time
                         const timeString12hr = new Date('1970-01-01T' + timeString + 'Z')
@@ -28,7 +31,12 @@ export function Appointments(props: Clients) {
                         return (
                             <Card key={appointment.id}>
                                 <CardHeader>
-                                    <CardTitle>Appointment 1</CardTitle>
+                                    <div className="flex justify-between items-center">
+                                        <CardTitle>Appointment {idx + 1}</CardTitle>
+                                        <Button variant="outline" onClick={() => { deleteAppointment(props.id, appointment.id) }}>
+                                            <TrashIcon className="h-4 w-4" />
+                                        </Button>
+                                    </div>
                                     <CardDescription>
                                         <CalendarIcon className="mr-1 h-4 w-4 -translate-x-1" />
                                         {date}, {timeString12hr}
@@ -83,6 +91,27 @@ function PlusIcon(props: any) {
         >
             <path d="M5 12h14" />
             <path d="M12 5v14" />
+        </svg>
+    )
+}
+
+function TrashIcon(props: any) {
+    return (
+        <svg
+            {...props}
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <path d="M3 6h18" />
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
         </svg>
     )
 }

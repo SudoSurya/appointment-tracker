@@ -30,12 +30,24 @@ export default function Appointment({ params }: any) {
         fetchAppointments(params.id);
     }, [params.id]);
 
+    const deleteAppointment = async (clientId: string, appointmentId: string) => {
+        const res = await fetch(`/api/appointments/delete/${clientId}/${appointmentId}/`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const data = await res.json()
+        if(data){
+            setAppointments(data)
+        }
+    }
     return (
         <>
             <Navbar />
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
-            {appointments && <Appointments {...appointments} />}
+            {appointments && <Appointments props={appointments} deleteAppointment={deleteAppointment} />}
         </>
     );
 }

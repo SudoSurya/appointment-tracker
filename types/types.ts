@@ -1,5 +1,5 @@
 export type Appointments = {
-    id: number,
+    id: string,
     Date: string,
     Time: string
 }
