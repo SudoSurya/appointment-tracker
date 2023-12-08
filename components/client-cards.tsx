@@ -2,14 +2,20 @@ import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/com
 import { Button } from "@/components/ui/button"
 import { Clients } from "@/types/types"
 import Link from "next/link"
+type Props = {
+    client: Clients
+    deleteClient: any
+}
+export function ClientCards({ client, deleteClient }: Props) {
 
-export function ClientCards(client: Clients) {
     return (
         <Card>
             <CardHeader>
                 <div className="flex justify-between items-center">
                     <CardTitle>{client.FirstName + " " + client.LastName}</CardTitle>
-                    <DeleteIcon className="w-4 h-4" />
+                    <button onClick={() => { deleteClient(client.id) }}>
+                        <DeleteIcon className="w-4 h-4" />
+                    </button>
                 </div>
                 <CardDescription>{client.Location}</CardDescription>
             </CardHeader>
