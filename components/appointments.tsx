@@ -5,6 +5,7 @@
 import { Button } from "@/components/ui/button"
 import { CardTitle, CardDescription, CardHeader, Card } from "@/components/ui/card"
 import { Clients } from "@/types/types"
+import Link from "next/link"
 type Props = {
     props: Clients
     deleteAppointment: any
@@ -14,10 +15,12 @@ export function Appointments({ props, deleteAppointment }: Props) {
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-semibold">{props.FirstName + " " + props.LastName} Appointments </h1>
+                <Link href={`/appointment/create/${props.id}/`}>
                 <Button variant="outline">
                     <PlusIcon className="mr-1 h-4 w-4 -translate-x-1" />
                     New Appointment
                 </Button>
+                </Link>
             </div>
             <div className="grid gap-6">
                 {

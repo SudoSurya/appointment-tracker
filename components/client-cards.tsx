@@ -17,7 +17,9 @@ export function ClientCards(client: Clients) {
                 <Link href={`/appointment/${client.id}`}>
                     <Button size="sm" className="bg-black text-white">View Appointments</Button>
                 </Link>
-                <Button size="sm" className="bg-black text-white">Add Appointment</Button>
+                <Link href={`/appointment/create/${client.id}`}>
+                    <Button size="sm" className="bg-black text-white">Add Appointment</Button>
+                </Link>
             </CardContent>
         </Card>
     )
